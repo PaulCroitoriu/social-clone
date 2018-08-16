@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Star Social</title>
+
+    <!-- bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- fonts awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+
+  </head>
+
+  <body class="paul">
+    <nav class="navbar navbar-expand-lg navbar-light bg-ligh" role="navigation" id="navbar">
+      <div class="container">
+        <a class="navbar-brand mynav" href="{% url 'home' %}">Home</a>
+
+        <ul class="nav justify-content-end">
+          {% if user.is_authenticated %}
+            <li><a class="nav-link disabled" href="{% url 'posts:create' %}">Post</a></li>
+            <li><a class="nav-link disabled" href="{% url 'groups:all' %}">Groups</a></li>
+            <li><a class="nav-link disabled" href="{% url 'groups:new' %}">Create Group</a></li>
+            <li><a class="nav-link disabled" id="logout" href="{% url 'accounts:logout' %}">Logout</a></li>
+          {% else %}
+            <li><a class="nav-link disabled" href="#">Groups</a> </li>
+            <li><a class="nav-link disabled" href="{% url 'accounts:signup' %}">Sign Up</a> </li>
+            <li><a class="nav-link disabled" href="{% url 'accounts:login' %}">Login</a> </li>
+          {% endif %}
+        </ul>
+
+      </div>
+    </nav>
+
+      <div class="container mycontent">
+        {% block body_block %}
+        {% load humanize %}
+        {% endblock %}
+      </div>
+
+  </body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "posts/post_base.html" %}
+{% load humanize %}
+
+{% block prepost %}
+
+
+
+
+      <div class="col-sm-3">
+        <div class="content">
+        {% if request.user.is_authenticated %}
+          <div class="card card-with-shadow">
+            <div class="card-body">
+            <h5 class="card-title">Your Groups</h5>
+              <ul class="list-unstyled">
+                {% for user_group in user_groups %}
+                <li class="group li-with-bullet">
+                  <a href="{% url 'groups:single' slug=user_group.slug %}">
+                    {{ user_group.name }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">All Groups</h5>
+          <ul class="list-unstyled">
+            {% for group in other_groups %}
+            <li class="group li-with-buller">
+              <a href="{% url 'groups:single' slug=group.slug %}">
+                {{ group.name }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+{% endblock  %}

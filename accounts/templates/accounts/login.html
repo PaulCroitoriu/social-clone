@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block body_block %}
+
+<div class="form-block col-md-4">
+  <div class="container">
+    <h1 class="h-form">Login</h1><hr>
+
+    <form class="login-form" method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-form btn-primary" value="Login">
+    </form>
+    <br>
+    <p class="p-form"><a class="pass-forgot" href="#">Forgot password?</a></p>
+    <br><hr>
+    <p class="p-form">Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a></p>
+  </div>
+</div>
+
+
+
+{% endblock body_block %}
